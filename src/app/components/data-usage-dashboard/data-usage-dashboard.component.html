@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar with User Selection -->
+      <div class="col-md-3 bg-light p-4 min-vh-100">
+        <h3 class="mb-4 fw-bold ">Select User You want To see data usage </h3>
+        <div class="list-group">
+          <button class="list-group-item list-group-item-action border-0" (click)="selectUser(users[0])">
+            <i class="fa-solid fa-user fa-2x me-2 align-middle rounded-circle"></i> {{ users[0].name }}
+          </button>
+          <button class="list-group-item list-group-item-action border-0 mt-2" (click)="selectUser(users[1])">
+            <i class="fa-solid fa-user fa-2x me-2 align-middle rounded-circle"></i> {{ users[1].name }}
+          </button>
+
+          <button class="list-group-item list-group-item-action border-0 mt-2" (click)="selectUser(users[2])">
+            <i class="fa-solid fa-user fa-2x me-2 align-middle rounded-circle"></i> {{ users[2].name }}
+          </button>
+          <button class="list-group-item list-group-item-action border-0 mt-2" (click)="selectUser(users[3])">
+            <i class="fa-solid fa-user fa-2x me-2 align-middle rounded-circle"></i> {{ users[3].name }}
+          </button>
+        </div>
+      </div>
+  
+      <!-- Main Content Area with Charts -->
+      <div class="col-md-9 d-flex justify-content-center flex-column">
+        <!-- Initial Message -->
+        <div *ngIf="showMessage" class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+          <i class="fa-solid fa-info-circle fa-lg me-2"></i>
+          <span>Click on a user icon to show their data</span>
+          <button type="button" class="btn-close" aria-label="Close" (click)="showMessage = false"></button>
+        </div>
+  
+        <!-- User Message -->
+        <div *ngIf="!showMessage" class="mt-4 alert alert-info alert-dismissible fade show d-flex align-items-center">
+          <i class="fa-solid fa-info-circle fa-lg me-3"></i>
+          <span>
+            Showing data for User {{ selectedUser?.id }}: {{ selectedUser?.name }}
+          </span>
+          <button type="button" class="btn-close" aria-label="Close" (click)="dismissMessage()"></button>
+        </div>
+  
+        <div class="row gx-4 mb-4">
+          <!-- Doughnut Chart -->
+          <div class="col-md-6">
+            <div class="chart-container border-info rounded shadow-sm h-100">
+              <div class="chart">
+                <h5 class="card-title">Data Usage Overview</h5>
+                <canvas id="doughnutChart" class="chart"></canvas>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Line Chart -->
+          <div class="col-md-6">
+            <div class="chart-container border-success rounded shadow-sm h-100">
+              <div class="chart">
+                <h5 class="card-title">Data Usage Over Time</h5>
+                <canvas id="progressiveLineChart" class="chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Bar Chart -->
+        <div class="row">
+          <div class="col">
+            <div class="chart-container border-primary rounded shadow-sm">
+              <div class="chart">
+                <h5 class="card-title">Data Usage by Category</h5>
+                <canvas id="barChart" class="chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
